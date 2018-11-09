@@ -61,25 +61,20 @@ public class Home {
 		return null;
 	}
 	
-	public List<WebElement> getSubMenuesLinks(String headerMenu) {
-
+	public void clickOnSubmenu(String headerMenu, String locators) {
+		
 		if (headerMenu == "Product") {
-			//Actions action = new Actions(this.driver);
-			//action.moveToElement(this.driver.findElement(By.cssSelector(".dropdown-toggle"))).perform();
-			performMouseHover();
-			return this.driver.findElements(By.cssSelector(".dropdown-menu > li > a"));
+			Actions action = new Actions(this.driver);
+			action.moveToElement(this.driver.findElement(By.cssSelector(".dropdown-toggle"))).perform();
+			this.driver.findElement(By.xpath(locators)).click();
 		} else {
 			System.out.println("Wrong header title: " + headerMenu);
 		}
-		return null;
 	}
 	
-	public void performMouseHover() {
-		
-		Actions action = new Actions(this.driver);
-		action.moveToElement(this.driver.findElement(By.cssSelector(".dropdown-toggle"))).perform();
-
-		
+	public void clickOnHome() {
+		this.driver.findElement(By.cssSelector("#mainNavbar > ul > li > a")).click();
 	}
+	
 }
 

@@ -10,7 +10,7 @@ import com.page.Home;
 public class HomeTest {
 	
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 
 		Home homePage = new Home("https://www.constantmd.com/", driver);
@@ -29,6 +29,21 @@ public class HomeTest {
 				System.out.println("Product Sub Menu is: " + s);
 			}
 		}
+		
+		ArrayList<String> productSubmenuLocators = new ArrayList<String>();
+		
+		productSubmenuLocators.add("//*[@id=\"mainNavbar\"]/ul/li[2]/ul/li[1]/a");
+		productSubmenuLocators.add("//*[@id=\"mainNavbar\"]/ul/li[2]/ul/li[2]/a");
+		productSubmenuLocators.add("//*[@id=\"mainNavbar\"]/ul/li[2]/ul/li[3]/a");
+		productSubmenuLocators.add("//*[@id=\"mainNavbar\"]/ul/li[2]/ul/li[4]/a");
+		
+		for(String locator: productSubmenuLocators) {
+			
+			homePage.clickOnSubmenu("Product", locator);
+			Thread.sleep(3000);
+			homePage.clickOnHome();
+		}
+
 		driver.quit();
 
 	}
